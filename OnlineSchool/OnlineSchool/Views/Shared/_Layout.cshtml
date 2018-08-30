@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:700%7CMontserrat:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Instructor/bootstrap.min.css" />
+    <link href="~/Content/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/HomePageStyle.css" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="transparent-nav ">
+        <div class="container">
+            <div class="navbar-header ">
+                <!-- Logo -->
+                <div class="navbar-brand">
+                    <a class="logo" href="../index.html">
+                        <span class="s1">S</span> <span class="s2">ch</span> <span class="s3">ooly</span>
+                    </a>
+                </div>
+                <!-- /Logo -->
+                <!-- Mobile toggle -->
+                <button class="navbar-toggle">
+                    <span></span>
+                </button>
+                <!-- /Mobile toggle -->
+            </div>
+            <!-- Navigation -->
+            <div class="navbar-collapse collapse">
+                <nav id="nav">
+                    <ul class="main-menu nav navbar-nav">
+                        <li><a href="/Home/Index">Home</a></li>
+                        <li><a href="/Home/Courses">Courses</a></li>
+                        <li><a href="/Home/Contact">Contact</a></li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </nav>
+                <!-- /Navigation -->
+            </div>
+        </div>
+        <!-- container -->
+    </header>
+    <!-- /Header -->
+    
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <!-- Footer -->
+        <footer id="footer" class="">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div id="bottom-footer " class="row">
+                    <!-- social -->
+                    <div class="col-md-12 ">
+                        <ul class="footer-social ">
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- /social -->
+                    <!-- copyright -->
+                    <div class="col-md-12  text-center">
+                        <div class="footer-copyright text-center">
+                            <span>&copy; Copyright 2018. All Rights Reserved. </span>
+                        </div>
+                    </div>
+                    <!-- /copyright -->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- /container -->
+        </footer>
+        <!-- /Footer -->
+        <!-- preloader -->
+        <div id='preloader'><div class='preloader'></div></div>
+        <!-- /preloader -->
+        <!-- jQuery Plugins -->
+        <script src="~/Content/Instructor/js/jquery.min.js"></script>
+        <script src="~/Content/Instructor/js/bootstrap.min.js"></script>
+        <script src="~/Content/Instructor/js/main.js"></script>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

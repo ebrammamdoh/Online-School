@@ -1,0 +1,65 @@
+﻿@model OnlineSchool.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+
+    <link href="~/Content/Instructor/ionicons.min.css" rel="stylesheet" />
+
+    <link href="~/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/iCheck/all.css" rel="stylesheet" />
+
+
+    <link href="~/Content/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+
+    <link href="~/Content/Instructor/AdminLTE.min.css" rel="stylesheet" />
+
+}
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#">Login</a>
+    </div>
+    <div class="login-box-body">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group has-feedback">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "User name" })
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            
+            <input type="submit" value="Sign In" class="btn btn-primary btn-block btn-flat" />
+            @Html.ValidationSummary()
+        }
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/Instructor/Js/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/Instructor/Js/fastclick.js"></script>
+
+    <script src="~/Content/Instructor/Js/adminlte.min.js"></script>
+    <script src="~/Content/Instructor/Js/demo.js"></script>
+
+    <script src="~/Scripts/icheck.min.js"></script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+}

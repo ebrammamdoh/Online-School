@@ -1,0 +1,234 @@
+﻿@model OnlineSchool.Models.ViewModel.AllCoursesVM
+
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Blog -->
+<div id="blog" class="section">
+
+    <!-- container -->
+    <div class="container">
+
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="col-md-1"></div>
+                <!-- search widget -->
+                <div class="widget search-widget">
+
+
+                    <div class="col-lg-4">
+                        <label for="CategoryID">Select Category:</label>
+                        @Html.DropDownList("category",
+                       new SelectList(Model.Categories, "CategoryID", "CategoryName"), "Choose Category",
+                       new { @class = "form-control input", @id = "CategoryID" })
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label for="CourseID">Select Cources:</label>
+                      
+                        @Html.DropDownList("Course",
+                                        Enumerable.Empty<SelectListItem>(), "Choose Course",
+                                        new { @class = "form-control input", @id = "CourseID" })
+                    </div>
+
+
+
+                    <div class="col-md-3 top-serch">
+                        <input id="btnSearch" type="button" value="Search" class="main-button icon-button top-serch-button" />
+                    </div>
+                </div>
+                <!-- /search widget -->
+
+
+                <div class="form-group">
+
+                </div>
+
+            </div>
+            <!-- main blog -->
+            <div id="main" class="col-md-9">
+
+                <!-- row -->
+                <div id="coursesContent" class="row">
+                    <!-- single blog -->
+                    @foreach (var item in Model.CoursesDetails)
+                    {
+
+                        <div class="col-md-6">
+                            <div class="single-blog">
+                                <div class="blog-img">
+                                    <a href="/Instructor/CoursePage/@item.CourseID">
+                                        <img src="/Images/@item.ImgPath" alt="">
+                                    </a>
+                                </div>
+                                <h4><a href="/Instructor/CoursePage/@item.CourseID">@item.CourseName</a></h4> <!--link1-->
+                                <div class="blog-meta">
+                                    <span class="blog-meta-author">By: <a href="/Instructor/View/@item.InstructorID">@item.InstructorName</a></span>
+                                    <div class="pull-right">
+
+                                        <span class="blog-meta-comments"><a href="#"><i class="fa fa-eye"></i>@item.NoOfStudents</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    <!-- /single blog -->
+
+
+                </div>
+                <!-- /row -->
+                <!-- row -->
+                <div class="row">
+
+                    @*<!-- pagination -->
+                        <div class="col-md-12">
+                            <div class="post-pagination">
+                                <a href="#" class="pagination-back pull-left">Back</a>
+                                <ul class="pages">
+                                    @for(int i = 1; i <= Model.TotalPages+1; i++)
+                                    {
+                                        <li class="paging" >@i</li>
+                                    }
+                                </ul>
+                                <a href="#" class="pagination-next pull-right">Next</a>
+                            </div>
+                        </div>
+                        <!-- pagination -->*@
+
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /main blog -->
+            <!-- aside blog -->
+            <div id="aside" class="col-md-3">
+
+
+
+                <!-- category widget -->
+                <div class="widget category-widget">
+                    <h3>Lastest Cources</h3>
+                    @foreach (var item in Model.LatestCourses)
+                    {
+                        <a class="category" href="/Instructor/Course/@item.CourseID">@item.CourseName</a> <!--link2-->
+                    }
+
+
+                </div>
+                <!-- /category widget -->
+                <!-- posts widget -->
+                <div class="widget posts-widget">
+                    <h3>Most Watched</h3>
+                    <!-- single posts -->
+                    @foreach (var item in Model.MostWatched)
+                    {
+                        <div class="single-post">
+                            <a class="single-post-img" href="blog-post.html">
+                                <img src="/Images/@item.ImgPath" alt="">
+                            </a>
+                            <a href="/Instructor/Course/@item.CourseID">@item.CourseName</a><!--link3-->
+                            <p><small>By : @item.InstructorName</small></p>
+                        </div>
+                    }
+                    <!-- /single posts -->
+                    <!-- /posts widget -->
+                </div>
+                <!-- /aside blog -->
+            </div>
+            <!-- row -->
+
+        </div>
+        <!-- container -->
+
+    </div>
+</div>
+<!-- /Blog -->
+
+
+@section scripts{
+
+    <script type="text/jscript">
+        $(document).ready(function () {
+
+            $("#CategoryID").change(function () {
+                //alert("catId  " + $("#CategoryID").val());
+                $.ajax({
+                    url: "GetCoursesByCategoryID",
+                    type: 'POST',
+                    datatype: "json",
+                    contenttype: "application/json",
+                    data: {
+                        id: $("#CategoryID").val()
+                    },
+                    success: function (data) {
+                        //alert("Data retrieval successful");
+
+                        $("#CourseID").empty();
+                        $.each(data, function (i, val) {
+                            $("#CourseID").append("<option value='" + val.CourseID + "'>" + val.CourseName + "</option>");
+                        });
+                    },
+                    error: function (xhr) {
+                    }
+                });
+            });
+            
+            //Search button-------
+            $("#btnSearch").click(function () {
+                //alert("catId  " + $("#CategoryID").val());
+                $.ajax({
+                    url: "GetAllCoursesByCourseID",
+                    type: 'POST',
+                    datatype: "json",
+                    contenttype: "application/json",
+                    data: { corsID: $("#CourseID").val() },
+                    success: function (data) {
+                        //alert("Data retrieval successful");
+
+                        $("#coursesContent").empty();
+
+                        $.each(data, function (i, item) {
+
+                            $("#coursesContent").append(
+
+                                '<div class="col-md-6">' +
+                            '<div class="single-blog">' +
+                                '<div class="blog-img">' +
+                                    '<a href="blog-post.html">' +
+                                        '<img src="/Images/'+item.ImgPath+'" alt="">' +
+                                    '</a>' +
+                                '</div>' +
+                                '<h4><a href="/Instructor/Course/' + item.CourseID + '">' + item.CourseName + '</a></h4> <!--link1-->' +
+                                '<div class="blog-meta">' +
+                                    '<span class="blog-meta-author">By: <a href="/Instructor/View/"' + item.InstructorID + ">'" + item.InstructorName + "</a></span>" +
+                            '<div class="pull-right">' +
+
+                                        '<span class="blog-meta-comments"><a href="#"><i class="fa fa-eye"></i>' + item.NoOfStudents + '</a></span>' +
+                                            '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                        '</div>'
+
+                                );
+                        });
+
+                    },
+                    error: function (xhr) {
+                    }
+                });
+            });
+            //Paging Ajax -------
+
+            //-------
+        })
+
+    </script>
+
+}
+
+
+

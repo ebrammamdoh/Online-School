@@ -1,0 +1,143 @@
+﻿@model OnlineSchool.Models.ViewModel.InstructorDetailsVM
+
+@{
+    ViewBag.Title = "Edit Instructor";
+    Layout = "~/Views/Shared/_Instructor.cshtml";
+}
+<div class="wrapper">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="active">
+                        <a href="/Instructor/Edit/@Model.InstructorID">
+                            <i class="fa fa-th"></i> <span>Profile</span>
+                        </a>
+                    </li>
+                    <li><a href="/Instructor/Course/@Model.InstructorID"><i class="fa fa-book"></i> <span>My Courses</span></a></li>
+                </ul>
+            </div>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+        <!-- Left side column. contains the logo and sidebar -->
+    
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="background-color:white;">
+        <!-- Content Header (Page header) -->
+        <!-- Main content -->
+        <section>
+            @using(Html.BeginForm("Edit", "Instructor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+              @Html.AntiForgeryToken()
+             <div class="col-md-12 bodyy ">
+                <div class="form-group">
+                    <fieldset class="the-fieldset">
+                        <legend class="the-legend">
+                            personal information
+                        </legend>
+                        <div class="col-sm-6 ">
+                            <div class="col-sm-12 ">
+                                @Html.HiddenFor(i=>i.InstructorID)
+                                <p></p>
+                                <span class="icon-case"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                @Html.TextBoxFor(i => i.FullName, new { @class = "text" ,@placeholder="Full Name"})
+                                @Html.ValidationMessageFor(i => i.FullName)
+
+                            </div>
+                            <div class="col-sm-12 ">
+                                <p></p>
+                                <span class="icon-case"><i class="fa  fa-info"></i></span>
+                                @Html.TextBoxFor(i => i.JobTitle, new { @placeholder = "Job Title" })
+                                
+                            </div>
+
+                            <div class="col-sm-12 ">
+                                <p></p>
+                                <span class="icon-case"><i class="fa  fa-map-marker"></i></span>
+                                @Html.DropDownListFor(i => i.CountryID, 
+                                new SelectList(Model.countries, "CountryID", "countryName", Model.CountryID), "Select a country",
+                                new { @class = "form-control select22" })
+
+                            </div>
+                            <div class="col-sm-12">
+                                <p></p>
+                                <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                                @Html.TextAreaFor(i => i.JobDescription, new { @class = "", @placeholder = "Description" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <div class="col-sm-12 ">
+
+                                <div class="col-sm-12 col-sm-offset-1 wizard-card">
+                                    <div class="picture-container">
+                                        <div class="picture">
+
+                                            <img src="/Images/@Model.Picture" class="picture-src" id="wizardPicturePreview" title="" />
+
+                                            <input type="file" name="uploadimage" />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </fieldset>
+                </div>
+
+
+                <div class="form-group">
+                    <fieldset class="the-fieldset">
+                        <legend class="the-legend"> Communication data</legend>
+
+
+                        <div class="col-sm-12">
+                            <div class="col-sm-6 ">
+                                <p>Email Address </p>
+                                <span class="icon-case"><i class="fa fa-envelope-o"></i></span>
+                                @Html.TextBoxFor(i => i.Email, new { @disabled="true" })
+                                @Html.ValidationMessageFor(i => i.Email, null, new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-sm-6 ">
+                                <p>BirthDate</p>
+                                <span class="icon-case"><i class="fa fa-youtube" aria-hidden="true"></i></span>
+                                @Html.EditorFor(i => i.BirthDate)
+                                @Html.ValidationMessageFor(i => i.BirthDate, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <br>
+                <div class="col-md-12 col-xs12 text-center">
+                    <input type="submit" value="Save" class="btn btn-success "/>
+                </div>
+            </div>
+          }
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+   
+</div>
+

@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineSchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="AnswerID" />
+    </Key>
+    <Property Name="AnswerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="Answer1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Answer_Question" FromRole="Answer" ToRole="Question" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Answer_Student" FromRole="Answer" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Category" FromRole="Category" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="Choise">
+    <Key>
+      <PropertyRef Name="ChoiseID" />
+    </Key>
+    <Property Name="ChoiseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChoiseName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Choise_Question" FromRole="Choise" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Course_Category" FromRole="Course" ToRole="Category" />
+    <NavigationProperty Name="InstructorCoures" Relationship="Self.FK_InstructorCoures_Course" FromRole="Course" ToRole="InstructorCoures" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="InstructorID" />
+    </Key>
+    <Property Name="InstructorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegisterationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="Rate" Type="Int32" />
+    <Property Name="JobTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="JobDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="InstructorCoures" Relationship="Self.FK_InstructorCoures_Instructor" FromRole="Instructor" ToRole="InstructorCoures" />
+    <Property Name="CountryID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="InstructorCoure">
+    <Key>
+      <PropertyRef Name="InstructorCourseID" />
+    </Key>
+    <Property Name="InstructorCourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InstructorID" Type="Int32" Nullable="false" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="Rate" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreationDate" Type="DateTime" Precision="0" />
+    <Property Name="IsPaied" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_InstructorCoures_Course" FromRole="InstructorCoures" ToRole="Course" />
+    <NavigationProperty Name="Instructor" Relationship="Self.FK_InstructorCoures_Instructor" FromRole="InstructorCoures" ToRole="Instructor" />
+    <NavigationProperty Name="StudentIntakes" Relationship="Self.FK_StudentIntake_InstructorCoures" FromRole="InstructorCoures" ToRole="StudentIntake" />
+    <Property Name="ImgPath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PDF">
+    <Key>
+      <PropertyRef Name="PDFID" />
+    </Key>
+    <Property Name="PDFID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PDFMaterial" Type="Binary" MaxLength="200" FixedLength="true" Nullable="false" />
+    <Property Name="SegmentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Segment" Relationship="Self.FK_PDF_Segment" FromRole="PDF" ToRole="Segment" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionTitle" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Answer" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SegmentID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionType" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Question" FromRole="Question" ToRole="Answer" />
+    <NavigationProperty Name="Choises" Relationship="Self.FK_Choise_Question" FromRole="Question" ToRole="Choise" />
+    <NavigationProperty Name="Segment" Relationship="Self.FK_Question_Segment" FromRole="Question" ToRole="Segment" />
+  </EntityType>
+  <EntityType Name="Segment">
+    <Key>
+      <PropertyRef Name="SegmentID" />
+    </Key>
+    <Property Name="SegmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SegmentName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MinScore" Type="Int32" />
+    <Property Name="InstructorCourseID" Type="Int32" Nullable="false" />
+    <Property Name="TextContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PDFs" Relationship="Self.FK_PDF_Segment" FromRole="Segment" ToRole="PDF" />
+    <NavigationProperty Name="Questions" Relationship="Self.FK_Question_Segment" FromRole="Segment" ToRole="Question" />
+    <NavigationProperty Name="StudentSegments" Relationship="Self.FK_StudentSegment_Segment" FromRole="Segment" ToRole="StudentSegment" />
+    <NavigationProperty Name="Videos" Relationship="Self.FK_Video_Segment" FromRole="Segment" ToRole="Video" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegisterationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Answers" Relationship="Self.FK_Answer_Student" FromRole="Student" ToRole="Answer" />
+    <NavigationProperty Name="StudentIntakes" Relationship="Self.FK_StudentIntake_Student" FromRole="Student" ToRole="StudentIntake" />
+    <NavigationProperty Name="StudentSegments" Relationship="Self.FK_StudentSegment_Student" FromRole="Student" ToRole="StudentSegment" />
+    <Property Name="CountryID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="StudentIntake">
+    <Key>
+      <PropertyRef Name="StudentIntakeID" />
+    </Key>
+    <Property Name="StudentIntakeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="InstructorCourseID" Type="Int32" Nullable="false" />
+    <Property Name="FinalScore" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="InstructorCoure" Relationship="Self.FK_StudentIntake_InstructorCoures" FromRole="StudentIntake" ToRole="InstructorCoures" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_StudentIntake_Student" FromRole="StudentIntake" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="StudentSegment">
+    <Key>
+      <PropertyRef Name="StudentSegmentID" />
+    </Key>
+    <Property Name="StudentSegmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="SegmentID" Type="Int32" Nullable="false" />
+    <Property Name="Score" Type="Int32" />
+    <NavigationProperty Name="Segment" Relationship="Self.FK_StudentSegment_Segment" FromRole="StudentSegment" ToRole="Segment" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_StudentSegment_Student" FromRole="StudentSegment" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="VideoID" />
+    </Key>
+    <Property Name="VideoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VideoLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SegmentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Segment" Relationship="Self.FK_Video_Segment" FromRole="Video" ToRole="Segment" />
+  </EntityType>
+  <Association Name="FK_Answer_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Answer_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Choise_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="Choise" Type="Self.Choise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="Choise">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstructorCoures_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="InstructorCoures" Type="Self.InstructorCoure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="InstructorCoures">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstructorCoures_Instructor">
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="1" />
+    <End Role="InstructorCoures" Type="Self.InstructorCoure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="InstructorID" />
+      </Principal>
+      <Dependent Role="InstructorCoures">
+        <PropertyRef Name="InstructorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentIntake_InstructorCoures">
+    <End Role="InstructorCoures" Type="Self.InstructorCoure" Multiplicity="1" />
+    <End Role="StudentIntake" Type="Self.StudentIntake" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstructorCoures">
+        <PropertyRef Name="InstructorCourseID" />
+      </Principal>
+      <Dependent Role="StudentIntake">
+        <PropertyRef Name="InstructorCourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PDF_Segment">
+    <End Role="Segment" Type="Self.Segment" Multiplicity="1" />
+    <End Role="PDF" Type="Self.PDF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Segment">
+        <PropertyRef Name="SegmentID" />
+      </Principal>
+      <Dependent Role="PDF">
+        <PropertyRef Name="SegmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Segment">
+    <End Role="Segment" Type="Self.Segment" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Segment">
+        <PropertyRef Name="SegmentID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="SegmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSegment_Segment">
+    <End Role="Segment" Type="Self.Segment" Multiplicity="1" />
+    <End Role="StudentSegment" Type="Self.StudentSegment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Segment">
+        <PropertyRef Name="SegmentID" />
+      </Principal>
+      <Dependent Role="StudentSegment">
+        <PropertyRef Name="SegmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_Segment">
+    <End Role="Segment" Type="Self.Segment" Multiplicity="1" />
+    <End Role="Video" Type="Self.Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Segment">
+        <PropertyRef Name="SegmentID" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="SegmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentIntake_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentIntake" Type="Self.StudentIntake" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentIntake">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSegment_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentSegment" Type="Self.StudentSegment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentSegment">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineSchoolEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Answers" EntityType="Self.Answer" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Choises" EntityType="Self.Choise" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Instructors" EntityType="Self.Instructor" />
+    <EntitySet Name="InstructorCoures" EntityType="Self.InstructorCoure" />
+    <EntitySet Name="PDFs" EntityType="Self.PDF" />
+    <EntitySet Name="Questions" EntityType="Self.Question" />
+    <EntitySet Name="Segments" EntityType="Self.Segment" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="StudentIntakes" EntityType="Self.StudentIntake" />
+    <EntitySet Name="StudentSegments" EntityType="Self.StudentSegment" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Videos" EntityType="Self.Video" />
+    <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Answer" EntitySet="Answers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Answer_Student" Association="Self.FK_Answer_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Answer" EntitySet="Answers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Category" Association="Self.FK_Course_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Choise_Question" Association="Self.FK_Choise_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Choise" EntitySet="Choises" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstructorCoures_Course" Association="Self.FK_InstructorCoures_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="InstructorCoures" EntitySet="InstructorCoures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstructorCoures_Instructor" Association="Self.FK_InstructorCoures_Instructor">
+      <End Role="Instructor" EntitySet="Instructors" />
+      <End Role="InstructorCoures" EntitySet="InstructorCoures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentIntake_InstructorCoures" Association="Self.FK_StudentIntake_InstructorCoures">
+      <End Role="InstructorCoures" EntitySet="InstructorCoures" />
+      <End Role="StudentIntake" EntitySet="StudentIntakes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PDF_Segment" Association="Self.FK_PDF_Segment">
+      <End Role="Segment" EntitySet="Segments" />
+      <End Role="PDF" EntitySet="PDFs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Segment" Association="Self.FK_Question_Segment">
+      <End Role="Segment" EntitySet="Segments" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSegment_Segment" Association="Self.FK_StudentSegment_Segment">
+      <End Role="Segment" EntitySet="Segments" />
+      <End Role="StudentSegment" EntitySet="StudentSegments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_Segment" Association="Self.FK_Video_Segment">
+      <End Role="Segment" EntitySet="Segments" />
+      <End Role="Video" EntitySet="Videos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentIntake_Student" Association="Self.FK_StudentIntake_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="StudentIntake" EntitySet="StudentIntakes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSegment_Student" Association="Self.FK_StudentSegment_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="StudentSegment" EntitySet="StudentSegments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

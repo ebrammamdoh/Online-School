@@ -1,0 +1,107 @@
+﻿@model OnlineSchool.Models.ViewModel.StudentDetailsVM
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Instructor.cshtml";
+}
+<div class="wrapper">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="active">
+                        <a href="/Student/Edit/@Model.StudentID">
+                            <i class="fa fa-th"></i> <span>Profile</span>
+                        </a>
+                    </li>
+               </ul>
+            </div>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Left side column. contains the logo and sidebar -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="background-color:white;">
+        <!-- Content Header (Page header) -->
+        <!-- Main content -->
+        <section>
+            @using (Html.BeginForm("Edit", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="col-md-12 bodyy ">
+                    <div class="form-group">
+                        <fieldset class="the-fieldset">
+                            <legend class="the-legend">
+                                personal information
+                            </legend>
+                            <div class="col-sm-6 ">
+                                <div class="col-sm-12 ">
+                                    @Html.HiddenFor(i => i.StudentID)
+                                    <p></p>
+                                    <span class="icon-case"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    @Html.TextBoxFor(i => i.FullName, new { @class = "text", @placeholder = "Full Name" })
+                                    @Html.ValidationMessageFor(i => i.FullName)
+                                </div>
+                                <div class="col-sm-12 ">
+                                    <p></p>
+                                    <span class="icon-case"><i class="fa  fa-map-marker"></i></span>
+                                    @Html.DropDownListFor(i => i.CountryID,
+                                new SelectList(Model.countries, "CountryID", "countryName", Model.CountryID), "Select a country",
+                                new { @class = "form-control select22" })
+                                    @Html.ValidationMessageFor(i => i.CountryID, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6 ">
+                                <div class="col-sm-12 ">
+                                    <div class="col-sm-12 col-sm-offset-1 wizard-card">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="/Images/@Model.Picture" class="picture-src" id="wizardPicturePreview" title="" />
+
+                                                <input type="file" name="uploadimage" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="form-group">
+                        <fieldset class="the-fieldset">
+                            <legend class="the-legend"> Communication data</legend>
+                        </fieldset>
+                    </div>
+                    <br>
+                    <div class="col-md-12 col-xs12 text-center">
+                        <input type="submit" value="Save" class="btn btn-success " />
+                    </div>
+                </div>
+            }
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+@section scripts{
+    <script src="~/Content/Instructor/Js/jquery.min.js"></script>
+    <script src="~/Content/Instructor/Js/bootstrap.min.js"></script>
+    <script src="~/Content/Instructor/Js/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/Instructor/Js/fastclick.js"></script>
+    <script src="~/Content/Instructor/Js/adminlte.min.js"></script>
+    <script src="~/Content/Instructor/Js/demo.js"></script>
+}

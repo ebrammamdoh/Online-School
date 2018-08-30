@@ -1,0 +1,247 @@
+﻿@model OnlineSchool.Models.ViewModel.CoursePageVM
+@{
+    ViewBag.Title = "Course";
+    Layout = null;//"~/Views/Shared/_Instructor.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>HTML Education Template</title>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:700%7CMontserrat:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Instructor/bootstrap.min.css" />
+    <link href="~/Content/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/style.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="transparent-nav ">
+        <div class="container">
+            <div class="navbar-header ">
+                <!-- Logo -->
+                <div class="navbar-brand">
+                    <a class="logo" href="index.html">
+                        <span class="s1">S</span> <span class="s2">ch</span> <span class="s3">ooly</span>
+                    </a>
+                </div>
+                <!-- /Logo -->
+                <!-- Mobile toggle -->
+                <button class="navbar-toggle">
+                    <span></span>
+                </button>
+                <!-- /Mobile toggle -->
+            </div>
+            <!-- Navigation -->
+            <!-- Navigation -->
+            <div class="navbar-collapse collapse">
+                <nav id="nav">
+                    <ul class="main-menu nav navbar-nav">
+                        <li><a href="/Home/Index">Home</a></li>
+                        <li><a href="/Home/Courses">Courses</a></li>
+                        <li><a href="/Home/Contact">Contact</a></li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </nav>
+                <!-- /Navigation -->
+            </div>
+        </div>
+        <!-- container -->
+            <!-- /Navigation -->
+        </div>
+    </header>
+    <!-- /Header -->
+    <!-- Hero-area -->
+    <div class="hero-area section">
+        <!-- Backgound Image -->
+        <div class="bg-image bg-parallax overlay" style="background-image:url(~/Content/dist/img/blog-post-background.jpg)"></div>
+        <!-- /Backgound Image -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 text-center">
+                    <ul class="hero-area-tree">
+                        <li><a href="index.html">Home</a></li>
+
+
+                        <li><a href="blog.html">instructor</a></li>
+                   </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Hero-area -->
+    <section id="pricing" class="section-padding">
+        <div class="container" style="margin-top:40px;">
+            <div class="row">
+                <div class="col-md-3 righ" style="border: 1px solid #CCC;">
+                   
+                    <div class="pricing-head" style="margin-bottom: 9px; border-bottom: 2px #ccc solid;">
+                        <img src="~/Content/dist/img/avatar.png" class="img-responsive imag-instrstor" alt="img25" style="border-radius:50%;
+                             width:100px;
+                             margin-top:20px;
+                             height:90px;">
+                        <p class="text-center" style="margin-top: 10px; font-size: 20px; font-weight: bold; ">@Model.InstructorName</p>
+                        <br>
+                    </div>
+                    <div class="pricing-body">
+                        <p style="text-align: left;">
+                            <i class="fa fa-info" aria-hidden="true" style="color:#703081;"></i>
+                            @Model.JobTitle
+                        </p>
+                        <br>
+                        <br>
+                        <p style="text-align: left;">
+                            <i class="fa fa-map-marker" aria-hidden="true" style="color:#703081;"></i>
+                            @Model.JobDescription
+                        </p>
+                    </div>
+                    
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-8 lif" style="border: 1px solid #CCC;">
+                    @foreach (var item in Model.index)
+                    {
+                    <div class="head_title text-center " style="margin-top:0px;">
+                        <h2> @item.CourseName </h2>
+                    </div><!-- End off Head_title -->
+                    }
+                    <div class="col-md-12 col-sm-12">
+                        <!-- courses -->
+                        <div id="courses-wrapper">
+                            <!-- row -->
+                            <div class="row">
+                                <!-- single course -->
+
+                            @foreach (var item in Model.index)
+                            {
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <div class="course">
+                                        <a href="#" class="course-img">
+                                            <img src="~/Content/dist/img/course01.jpg" alt="">
+                                            <i class="course-link-icon fa fa-link"></i>
+                                        </a>
+                                        <a class="course-title" href="#">@item.Description</a>   
+                                        <div class="course-details text-center">
+                                            <button class="main-button icon-button">shows</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            </div>
+                            <!-- /row -->
+                        </div>
+                        <!-- /courses -->
+                    </div>
+                </div>
+           </div>
+        </div>
+    </section>
+    <!-- Blog -->
+    <div id="blog" class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- main blog -->
+                <div id="main" class="col-md-12">
+                    <!-- blog comments -->
+                    <div class="blog-comments" >
+                       
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="~/Content/dist/img/avatar.png" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">John Doe</h4>
+                                    <p>Cu his iudico appareat ullamcorper, at mea ignota nostrum. Nonumy argumentum id cum, eos adversarium contentiones id</p>
+                                    <div class="date-reply"><span>Oct 18, 2017 - 4:00AM</span><a href="#" class="reply">Reply</a></div>
+                                </div>
+                            </div>
+                          <div id="Users"></div>
+                        <!-- blog reply form -->
+                        <div class="blog-reply-form">
+                            <h3>Leave Comment</h3>
+                            <form>
+                                <textarea class="input" name="message" id="Name" placeholder="Enter your Message"></textarea>
+                                <input type="button" class="main-button icon-button" id="createBtn" value="Submit"/>
+                            </form>
+                        </div>
+                        <!-- /blog reply form -->
+                    </div>
+                    <!-- /blog comments -->
+                </div>
+                <!-- /main blog -->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- /Blog -->
+    <!-- Footer -->
+    <footer id="footer" class="">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div id="bottom-footer " class="row">
+                <!-- social -->
+                <div class="col-md-12 ">
+                    <ul class="footer-social ">
+                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /social -->
+                <!-- copyright -->
+                <div class="col-md-12  text-center">
+                    <div class="footer-copyright text-center">
+                        <span>&copy; Copyright 2018. All Rights Reserved. </span>
+                    </div>
+                </div>
+                <!-- /copyright -->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- /container -->
+    </footer>
+    <!-- /Footer -->
+    <!-- preloader -->
+    <div id='preloader'><div class='preloader'></div></div>
+    <!-- /preloader -->
+    <!-- jQuery Plugins -->
+    <script src="~/Content/Instructor/js/jquery.min.js"></script>
+    <script src="~/Content/Instructor/js/bootstrap.min.js"></script>
+    <script src="~/Content/Instructor/js/main.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
+    
+    <script src="~/signalr/js"></script>
+    <script>
+        //create chat object
+        var chatProxy = $.connection.CommentHub;
+        //start Connect
+        $.connection.hub.start().done(
+            function () {
+                $("#createBtn").click(function(){
+                    var name = $("#Name").val();
+                    chatProxy.server.NewUserConnected(name);
+                });
+            });
+
+        chatProxy.client.NewUserNotification = function (username) {
+            $("#Users").append(
+                "<div class='media'>"+
+                                "<div class='media-left'>"+
+                                    "<img src='../Content/dist/img/avatar.png' alt=''>"+
+                                "</div>"+
+                                "<div class='media-body'>"+
+                                    +"<h4 class='media-heading'>John Doe</h4>"
+                                    +"<p>"+username+"</p>"+
+            "<div class='date-reply'><span>Oct 18, 2017 - 4:00AM</span><a href='#' class='reply'>Reply</a></div>"+
+                                "</div>"+
+                            "</div>");
+        }
+    </script>
+</body>
+</html>

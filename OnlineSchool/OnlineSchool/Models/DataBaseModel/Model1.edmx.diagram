@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b869987320c6404cbd701fcd18c3303e" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineSchoolModel.Answer" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.Category" Width="1.5" PointX="5.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.Choise" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.Country" Width="1.5" PointX="7.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.Course" Width="1.5" PointX="8" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.Instructor" Width="1.5" PointX="8" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.InstructorCoure" Width="1.5" PointX="10.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.PDF" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.Question" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.Segment" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.Student" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.StudentIntake" Width="1.5" PointX="12.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.StudentSegment" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.sysdiagram" Width="1.5" PointX="9.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSchoolModel.Video" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_Answer_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_Answer_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_Course_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_Choise_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_InstructorCoures_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_InstructorCoures_Instructor" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_StudentIntake_InstructorCoures" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_PDF_Segment" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_Question_Segment" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_StudentSegment_Segment" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_Video_Segment" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_StudentIntake_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSchoolModel.FK_StudentSegment_Student" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,310 @@
+﻿@model OnlineSchool.Models.ViewModel.InstructorCourseAdditionVM
+
+@{
+    ViewBag.Title = "AddCourse";
+    Layout = "~/Views/Shared/_Instructor.cshtml";
+}
+
+@section styles{
+
+<style>
+    .example-modal .modal {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+    }
+
+    .example-modal .modal {
+        background: transparent !important;
+    }
+</style>
+}
+
+<div class="wrapper">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="active">
+                        <a href="/Instructor/Edit/@Model.InstructorID">
+                            <i class="fa fa-th"></i> <span>Profile</span>
+                        </a>
+                    </li>
+                    <li><a href="/Instructor/Course/@Model.InstructorID"><i class="fa fa-book"></i> <span>My Courses</span></a></li>
+                </ul>
+            </div>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Left side column. contains the logo and sidebar -->
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+
+                    <div class="col-sm-12  ">
+                        <div class="pag2">
+                            <a href="addcource1.html" class="btn2">Add Cource </a>
+                            <a href="addcource2.html" class="btn2">Add Segment</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="col-md-1"> </div>
+
+                        <div class="col-md-10">
+                            <!-- general form elements -->
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Add Cource</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                @using (@Html.BeginForm())
+                                {
+                                    <div class="box-body">
+                                        <div class="form-group col-md-12">
+                                            <div class="col-sm-6">
+                                                @Html.DropDownList("category",
+                                        new SelectList(Model.Categories, "CategoryID", "CategoryName"), "Choose category",
+                                 new { @class = "form-control select22", @id = "CategoryID" })
+                                            </div>
+                                            <div class="col-sm-6">
+                                                @Html.DropDownList("Course",
+                                        Enumerable.Empty<SelectListItem>(), "--Select Course--",
+                                        new { @class = "form-control select22", @id = "CourseID" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            @Html.LabelFor(c => c.Title)
+                                            @Html.TextBoxFor(c => c.Title, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(c => c.Title, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            @Html.LabelFor(c => c.Description)
+                                            @Html.TextAreaFor(c => c.Description, new { @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                    <div class="box-footer">
+                                        <input type="submit" value="Next" class="btn btn-success" />
+                                    </div>
+                                }
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <div class="col-md-1"> </div>
+                        <!--Segment section-->
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="col-md-1"> </div>
+
+                        <div class="col-md-10">
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Add segment (lecture 1)</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="box-body">
+                                        <div class="form-group col-md-4">
+                                            <label for="exampleInputEmail1">Lecture Name </label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label>Text</label>
+                                            <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleInputFile">Upload pdf</label>
+                                            <input type="file" id="exampleInputFile">
+
+
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleInputFile">Upload  video</label>
+                                            <input type="file" id="exampleInputFile">
+
+
+                                        </div>
+                                        <div class=" col-md-12">
+                                            <button type="button" class="btn btn-primary">
+                                                Add Test
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.box-body -->
+
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <button type="submit" class="btn btn-warning">Add segment</button>
+                                        <div class="showPanel-div">
+
+                                            <a class=" col-sm-8 label-icon" value='Show' id="showPanel"> <i class="fa fa-plus-square " aria-hidden="true"></i>   Add segment </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.box -->
+
+
+
+                        </div>
+                        <div class="col-md-1"> </div>
+                    </div>
+
+                    <div class="col-md-12 " style="display: none" id="se">
+                        <div class="col-md-1"> </div>
+
+                        <div class="col-md-10">
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Add segment (lecture 1)</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="box-body">
+                                        <div class="form-group col-md-4">
+                                            <label for="exampleInputEmail1">Lecture Name </label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label>Text</label>
+                                            <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleInputFile">Upload pdf</label>
+                                            <input type="file" id="exampleInputFile">
+
+
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleInputFile">Upload  video</label>
+                                            <input type="file" id="exampleInputFile">
+
+
+                                        </div>
+                                        <div class=" col-md-12">
+                                            <button type="button" class="btn btn-primary">
+                                                Add Test
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.box-body -->
+
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <button type="submit" class="btn btn-warning">Add segment</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.box -->
+
+
+
+                        </div>
+                        <div class="col-md-1"> </div>
+                    </div>
+
+
+                    
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            <strong>Success!</strong>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryajax")
+<script>
+    $("#showPanel").click(function () {
+        $("#se").show("slow");
+    });
+</script>
+
+    <script type="text/jscript">
+        $(document).ready(function () {
+            
+            $("#CategoryID").change(function () {
+                //alert("catId  " + $("#CategoryID").val());
+                $.ajax({
+                    url: "GetCoursesByCategoryID",
+                    type: 'POST',
+                    datatype : "json",
+                    contenttype : "application/json",
+                    data: {
+                        id: $("#CategoryID").val()
+                    },
+                    success: function (data) {
+                        //alert("Data retrieval successful");
+                       
+                        $("#CourseID").empty();
+                        $.each(data, function (i, val) {
+                            $("#CourseID").append("<option value='" + val.CourseID + "'>" + val.CourseName + "</option>");
+                        });
+
+                    },
+                    error: function (xhr) {
+                    }
+                });
+            })
+            
+        })
+    
+</script>
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

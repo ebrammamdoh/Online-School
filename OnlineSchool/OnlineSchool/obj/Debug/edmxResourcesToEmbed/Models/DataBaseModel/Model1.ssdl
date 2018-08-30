@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineSchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="AnswerID" />
+    </Key>
+    <Property Name="AnswerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="StudentID" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Choise">
+    <Key>
+      <PropertyRef Name="ChoiseID" />
+    </Key>
+    <Property Name="ChoiseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChoiseName" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="InstructorID" />
+    </Key>
+    <Property Name="InstructorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Picture" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="RegisterationDate" Type="date" Nullable="false" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="Rate" Type="int" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="200" />
+    <Property Name="JobDescription" Type="nvarchar(max)" />
+    <Property Name="CountryID" Type="int" />
+  </EntityType>
+  <EntityType Name="InstructorCoures">
+    <Key>
+      <PropertyRef Name="InstructorCourseID" />
+    </Key>
+    <Property Name="InstructorCourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InstructorID" Type="int" Nullable="false" />
+    <Property Name="CourseID" Type="int" Nullable="false" />
+    <Property Name="Rate" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreationDate" Type="date" />
+    <Property Name="IsPaied" Type="bit" Nullable="false" />
+    <Property Name="ImgPath" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PDF">
+    <Key>
+      <PropertyRef Name="PDFID" />
+    </Key>
+    <Property Name="PDFID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PDFMaterial" Type="binary" MaxLength="200" Nullable="false" />
+    <Property Name="SegmentID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionTitle" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="SegmentID" Type="int" Nullable="false" />
+    <Property Name="QuestionType" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Segment">
+    <Key>
+      <PropertyRef Name="SegmentID" />
+    </Key>
+    <Property Name="SegmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SegmentName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="MinScore" Type="int" />
+    <Property Name="InstructorCourseID" Type="int" Nullable="false" />
+    <Property Name="TextContent" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Picture" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="RegisterationDate" Type="date" Nullable="false" />
+    <Property Name="BirthDate" Type="date" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="CountryID" Type="int" />
+  </EntityType>
+  <EntityType Name="StudentIntake">
+    <Key>
+      <PropertyRef Name="StudentIntakeID" />
+    </Key>
+    <Property Name="StudentIntakeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentID" Type="int" Nullable="false" />
+    <Property Name="InstructorCourseID" Type="int" Nullable="false" />
+    <Property Name="FinalScore" Type="int" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentSegment">
+    <Key>
+      <PropertyRef Name="StudentSegmentID" />
+    </Key>
+    <Property Name="StudentSegmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentID" Type="int" Nullable="false" />
+    <Property Name="SegmentID" Type="int" Nullable="false" />
+    <Property Name="Score" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="VideoID" />
+    </Key>
+    <Property Name="VideoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="VideoLink" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="SegmentID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Answer_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Answer_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Choise_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="Choise" Type="Self.Choise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="Choise">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstructorCoures_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="InstructorCoures" Type="Self.InstructorCoures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="InstructorCoures">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstructorCoures_Instructor">
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="1" />
+    <End Role="InstructorCoures" Type="Self.InstructorCoures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="InstructorID" />
+      </Principal>
+      <Dependent Role="InstructorCoures">
+        <PropertyRef Name="InstructorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PDF_Segment">
+    <End Role="Segment" Type="Self.Segment" Multiplicity="1" />
+    <End Role="PDF" Type="Self.PDF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Segment">
+        <PropertyRef Name="SegmentID" />
+      </Principal>
+      <Dependent Role="PDF">
+        <PropertyRef Name="SegmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Segment">
+    <End Role="Segment" Type="Self.Segment" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Segment">
+        <PropertyRef Name="SegmentID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="SegmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentIntake_InstructorCoures">
+    <End Role="InstructorCoures" Type="Self.InstructorCoures" Multiplicity="1" />
+    <End Role="StudentIntake" Type="Self.StudentIntake" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InstructorCoures">
+        <PropertyRef Name="InstructorCourseID" />
+      </Principal>
+      <Dependent Role="StudentIntake">
+        <PropertyRef Name="InstructorCourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentIntake_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentIntake" Type="Self.StudentIntake" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentIntake">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSegment_Segment">
+    <End Role="Segment" Type="Self.Segment" Multiplicity="1" />
+    <End Role="StudentSegment" Type="Self.StudentSegment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Segment">
+        <PropertyRef Name="SegmentID" />
+      </Principal>
+      <Dependent Role="StudentSegment">
+        <PropertyRef Name="SegmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSegment_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentSegment" Type="Self.StudentSegment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentSegment">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_Segment">
+    <End Role="Segment" Type="Self.Segment" Multiplicity="1" />
+    <End Role="Video" Type="Self.Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Segment">
+        <PropertyRef Name="SegmentID" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="SegmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineSchoolModelStoreContainer">
+    <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Choise" EntityType="Self.Choise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InstructorCoures" EntityType="Self.InstructorCoures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PDF" EntityType="Self.PDF" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Segment" EntityType="Self.Segment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentIntake" EntityType="Self.StudentIntake" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentSegment" EntityType="Self.StudentSegment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Answer_Student" Association="Self.FK_Answer_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Choise_Question" Association="Self.FK_Choise_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="Choise" EntitySet="Choise" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Category" Association="Self.FK_Course_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstructorCoures_Course" Association="Self.FK_InstructorCoures_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="InstructorCoures" EntitySet="InstructorCoures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstructorCoures_Instructor" Association="Self.FK_InstructorCoures_Instructor">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="InstructorCoures" EntitySet="InstructorCoures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PDF_Segment" Association="Self.FK_PDF_Segment">
+      <End Role="Segment" EntitySet="Segment" />
+      <End Role="PDF" EntitySet="PDF" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Segment" Association="Self.FK_Question_Segment">
+      <End Role="Segment" EntitySet="Segment" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentIntake_InstructorCoures" Association="Self.FK_StudentIntake_InstructorCoures">
+      <End Role="InstructorCoures" EntitySet="InstructorCoures" />
+      <End Role="StudentIntake" EntitySet="StudentIntake" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentIntake_Student" Association="Self.FK_StudentIntake_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentIntake" EntitySet="StudentIntake" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSegment_Segment" Association="Self.FK_StudentSegment_Segment">
+      <End Role="Segment" EntitySet="Segment" />
+      <End Role="StudentSegment" EntitySet="StudentSegment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSegment_Student" Association="Self.FK_StudentSegment_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentSegment" EntitySet="StudentSegment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_Segment" Association="Self.FK_Video_Segment">
+      <End Role="Segment" EntitySet="Segment" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

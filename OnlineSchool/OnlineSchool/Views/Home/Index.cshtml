@@ -1,0 +1,146 @@
+﻿@model OnlineSchool.Models.ViewModel.HomePageVM
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <!-- Home -->
+    <div id="home" class="hero-area">
+        <!-- Backgound Image -->
+        <div class="bg-image bg-parallax overlay" style="background-image:url(/Images/home-background.jpg)"></div>
+        <!-- /Backgound Image -->
+        <div class="home-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2"> </div>
+                    <div class="col-md-8" style="text-align: center;">
+                        <h1 class="white-text">schooly Free Online Training Courses</h1>
+                        @if(User.Identity.IsAuthenticated==true)
+                        {
+                            if(Model.IsInstructor)
+                            {
+                                Response.Redirect("/Instructor/Edit/" + Model.VisitorID);
+                                @*<a class="main-button icon-button" href="/Instructor/Edit/@Model.VisitorID">Get Started!</a>*@
+                            }
+                            else
+                            {
+                                <a class="main-button icon-button" href="/Student/Edit/@Model.VisitorID">Get Started!</a>
+                            }
+                            
+                        }
+                        else
+                        {
+                            <a class="main-button icon-button" href="/Account/Register">Get Started!</a>
+                        }
+                        
+                    </div>
+                    <div class="col-md-2"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Home -->
+    <!-- Why us -->
+    <div id="why-us" class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="section-header text-center">
+                    <h2>Why Schooly</h2>
+                </div>
+                <!-- feature -->
+                <div class="col-md-4">
+                    <div class="feature">
+                        <i class="feature-icon fa fa-flask"></i>
+                        <div class="feature-content">
+                            <h4>Online Courses</h4>
+                            <p>schoooooly  schoooooly schoooooly schoooooly schoooooly schoooooly schoooooly</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /feature -->
+                <!-- feature -->
+                <div class="col-md-4">
+                    <div class="feature">
+                        <i class="feature-icon fa fa-users"></i>
+                        <div class="feature-content">
+                            <h4>Expert Teachers</h4>
+                            <p>schoooooly  schoooooly schoooooly schoooooly schoooooly schoooooly schoooooly</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /feature -->
+                <!-- feature -->
+                <div class="col-md-4">
+                    <div class="feature">
+                        <i class="feature-icon fa fa-comments"></i>
+                        <div class="feature-content">
+                            <h4>Community</h4>
+                            <p>schoooooly  schoooooly schoooooly schoooooly schoooooly schoooooly schoooooly</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /feature -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /Why us -->
+    <!-- Courses -->
+    <div id="courses" class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="section-header text-center">
+                    <h2>Explore Courses</h2>
+                </div>
+            </div>
+            <!-- /row -->
+            <!-- courses -->
+            <div id="courses-wrapper">
+                <!-- row -->
+                <div class="row">
+                    <!-- single course -->
+                    @foreach (var item in Model.index)
+                    {
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="course">
+                                <a href="../Instructor/CoursePage/@item.InstructorCourseID" class="course-img">
+                                    <img src="/Images/@item.ImgPath" alt="">
+                                    <i class="course-link-icon fa fa-link"></i>
+                                </a>
+                                <a class="course-title" href="#">@item.CourseName</a>
+                                <div class="course-details">
+                                    <span class="course-category">@item.CategoryName</span>
+                                    <span class="course-price course-free">
+                                        
+                                        @if (item.IsPaied)
+                                        {
+                                            <span class="course-price course-premium">Premium</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="course-price course-free">Free</span>
+                                        }
+                                    
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- /single course -->
+                </div>
+            </div>
+            <!-- /courses -->
+            <div class="row">
+                <div class="center-btn">
+                    <a class="main-button icon-button" href="/Home/Courses">More Courses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Courses -->
+    
